@@ -1,0 +1,121 @@
+%The credit goes to https://tex.stackexchange.com/questions/546259/create-chat-interface-in-latex-with-tikz
+\documentclass{article}
+
+\usepackage[left=10px,right=10px,top=10px,bottom=10px,paperwidth=8in,paperheight=33in]{geometry}
+ 
+\usepackage{tikz}
+\usepackage{xparse}
+
+\newcounter{chatlinenum}
+
+%% Adjust text width to suit
+\tikzset{chatstyle/.style={text width=1.5in,font=\sffamily,rounded corners=2pt}}
+
+%% Adjust width of minipage to suit, but greater than TikZ text width
+\NewDocumentEnvironment{chat}{}{%
+   \setcounter{chatlinenum}{0}
+   \begin{minipage}{2.0in}
+       \everypar={\chatline}
+}{%
+   \end{minipage}
+}
+
+\definecolor{mygreen}{HTML}{88EABB}
+
+%% Alter colors to suit
+\def\chatline#1\par{%
+   \stepcounter{chatlinenum}%
+   \noindent
+   \ifodd\thechatlinenum
+       \tikz[]{\node[fill=lightgray,chatstyle]{\strut#1\strut};}%
+   \else
+       \hfill 
+       \hspace{0.5\textwidth}
+       \tikz[]{\node[fill=mygreen,chatstyle,align=left]{\strut#1\unskip\strut};}%
+   \fi
+   \par
+   \smallskip
+}
+
+\begin{document}
+\begin{chat}
+
+3:16 PM Lorem ipsum, or lipsum as it is sometimes known
+
+3:16 PM is dummy text used in laying out print
+
+3:16 PM graphic or web designs
+
+3:22 PM The passage is attributed to an unknown typesetter in the 15th century\\
+3:22 PM ahhahaha
+
+3:22 PM who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book
+
+3:23 PM It usually begins wit\\
+3:24 PM Lorem ipsum dolor sit amet, consectetur adipiscing elit...\\
+3:24 PM sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+3:26 PM The purpose of lorem ipsum is to creat
+
+3:27 PM e a natural looking block of text (sentence, paragraph, page, etc.)
+
+3:27 PM that doesn't distract from the layout
+
+3:28 PM A practice not without controversy, laying out pages with meaningless filler...\\
+3:28 PM ahahahah
+
+3:29 PM text can be very useful when the focus is meant to be on design, not content
+
+3:29 PM Without sharing this \\
+3:29 PM ahahahah\\
+3:29 PM At least the dog and the toothbrush are personal items
+
+3:48 PM The passage experienced a surge in popularity during the 1960...
+3:48 PM when Letraset used it on their dry-transfer sheets, and again during the 90s
+
+6:23 PM as desktop publishers bundled the text with their software.
+
+7:27 PM Today it's seen all around the web; on templates, websites, and stock designs.
+7:27 PM Use our generator to get your own, or read on for the authoritative history of lorem ipsum. 
+
+3:16 PM Lorem ipsum, or lipsum as it is sometimes known
+
+3:16 PM is dummy text used in laying out print
+
+3:16 PM graphic or web designs
+
+3:22 PM The passage is attributed to an unknown typesetter in the 15th century\\
+3:22 PM ahhahaha
+
+3:22 PM who is thought to have scrambled parts of Cicero's De Finibus Bonorum et Malorum for use in a type specimen book
+
+3:23 PM It usually begins wit\\
+3:24 PM Lorem ipsum dolor sit amet, consectetur adipiscing elit...\\
+3:24 PM sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+
+3:26 PM The purpose of lorem ipsum is to creat
+
+3:27 PM e a natural looking block of text (sentence, paragraph, page, etc.)
+
+3:27 PM that doesn't distract from the layout
+
+3:28 PM A practice not without controversy, laying out pages with meaningless filler...\\
+3:28 PM ahahahah
+
+3:29 PM text can be very useful when the focus is meant to be on design, not content
+
+3:29 PM Without sharing this \\
+3:29 PM ahahahah\\
+3:29 PM At least the dog and the toothbrush are personal items
+
+3:48 PM The passage experienced a surge in popularity during the 1960...
+3:48 PM when Letraset used it on their dry-transfer sheets, and again during the 90s
+
+6:23 PM as desktop publishers bundled the text with their software.
+
+7:27 PM Today it's seen all around the web; on templates, websites, and stock designs.
+7:27 PM Use our generator to get your own, or read on for the authoritative history of lorem ipsum. 
+
+\end{chat}
+
+\end{document}
