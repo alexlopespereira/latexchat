@@ -1,20 +1,20 @@
 %The credit goes to https://tex.stackexchange.com/questions/546259/create-chat-interface-in-latex-with-tikz
 \documentclass{article}
 \usepackage{graphicx,pgffor}
-\usepackage[left=10px,right=10px,top=10px,bottom=10px,paperwidth=8in,paperheight=33in]{geometry}
- 
+\usepackage[left=10px,right=10px,top=10px,bottom=10px,paperwidth=8in,paperheight=28in]{geometry}
+ \usepackage{float}
 \usepackage{tikz}
 \usepackage{xparse}
 
 \newcounter{chatlinenum}
 
 %% Adjust text width to suit
-\tikzset{chatstyle/.style={text width=1.5in,font=\sffamily,rounded corners=2pt}}
+\tikzset{chatstyle/.style={text width=4in,font=\sffamily,rounded corners=2pt}}
 
 %% Adjust width of minipage to suit, but greater than TikZ text width
 \NewDocumentEnvironment{chat}{}{%
    \setcounter{chatlinenum}{0}
-   \begin{minipage}{2.0in}
+   \begin{minipage}{3.0in}
        \everypar={\chatline}
 }{%
    \end{minipage}
@@ -29,8 +29,8 @@
    \ifodd\thechatlinenum
        \tikz[]{\node[fill=lightgray,chatstyle]{\strut#1\strut};}%
    \else
-       \hfill 
-       \hspace{0.5\textwidth}
+       \hfill
+       \hspace{0.8\textwidth}
        \tikz[]{\node[fill=mygreen,chatstyle,align=left]{\strut#1\unskip\strut};}%
    \fi
    \par
@@ -42,8 +42,9 @@
 
 
 \foreach \i in {1,...,2}{
-    \begin{figure} \includegraphics[width=0.5\textwidth]{images/image\i.png} \end{figure}
+    \begin{figure}[H] \includegraphics[width=0.5\textwidth]{images/image\i.png} \end{figure}
 }
+
 
     
 \begin{chat}
