@@ -1,15 +1,20 @@
 %The credit goes to https://tex.stackexchange.com/questions/546259/create-chat-interface-in-latex-with-tikz
-\documentclass{article}
-\usepackage{graphicx,pgffor}
-\usepackage[left=10px,right=10px,top=10px,bottom=10px,paperwidth=8in,paperheight=28in]{geometry}
- \usepackage{float}
+\documentclass[11pt]{extarticle}
+\usepackage{graphicx,pgffor,afterpage}
+\usepackage[left=10px,right=10px,top=10px,bottom=10px,paperwidth=8in,paperheight=25in]{geometry}
+\usepackage{float}
 \usepackage{tikz}
+\usepackage{subfigure}
 
+
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\renewcommand{\figurename}{Photo}
 
 \newcounter{chatlinenum}
 
 %% Adjust text width to suit
-\tikzset{chatstyle/.style={text width=4in,font=\sffamily,rounded corners=2pt,minimum height=1.6cm}}
+\tikzset{chatstyle/.style={text width=4.5in,font=\sffamily,rounded corners=2pt,minimum height=0.8cm}}
 
 %% Adjust width of minipage to suit, but greater than TikZ text width
 \NewDocumentEnvironment{chat}{}{%
@@ -27,28 +32,36 @@
    \stepcounter{chatlinenum}%
    \noindent
    \ifodd\thechatlinenum
-       \tikz[]{ \hspace{0.2\textwidth} \node[fill=lightgray,chatstyle]{\strut#1\strut}; 
-       \node[chatstyle] (img) at (-1.5,0) {\includegraphics[height=1cm]{images/user1.png}}; }%
+       \hspace{0.8\textwidth}
+       \tikz[]{\node[fill=mygreen,chatstyle,align=left]{\strut#1\unskip\strut}; \node[chatstyle] (img) at (-1,0) {\includegraphics[height=0.7cm]{images/user1.png}};}%
    \else
        \hfill
-       \hspace{0.8\textwidth}
-       \tikz[]{\node[fill=mygreen,chatstyle,align=left]{\strut#1\unskip\strut}; \node[chatstyle] (img) at (-1.5,0) {\includegraphics[height=1cm]{images/user2.png}};}%
+       \tikz[]{ \hspace{0.1\textwidth} \node[fill=lightgray,chatstyle]{\strut#1\strut};
+       \node[chatstyle] (img) at (-1.1,0) {\includegraphics[height=0.7cm]{images/user2.png}}; }%
    \fi
    \par
    \smallskip
 }
 
+\def\names{{image1.png},{image2.png}}
+
+\def\namesc{{image4.png},{image5.png}}
+
 
 \begin{document}
 
-\foreach \i in {1,...,2}{
-    \begin{figure}[H] \includegraphics[width=0.5\textwidth]{images/image\i.png} \end{figure}
+
+
+\begin{figure}[H]
+\foreach \name in \names {%
+    \begin{subfigure}[]{}
+        \includegraphics[width=0.3\linewidth]{images/\name}
+    \end{subfigure}\quad
 }
+\end{figure}
 
 
-    
 \begin{chat}
-
 3:16 PM Lorem ipsum, or lipsum as it is sometimes known
 
 3:16 PM is dummy text used in laying out print
@@ -85,7 +98,7 @@
 6:23 PM as desktop publishers bundled the text with their software.
 
 7:27 PM Today it's seen all around the web; on templates, websites, and stock designs.
-7:27 PM Use our generator to get your own, or read on for the authoritative history of lorem ipsum. 
+7:27 PM Use our generator to get your own, or read on for the authoritative history of lorem ipsum.
 
 3:16 PM Lorem ipsum, or lipsum as it is sometimes known
 
@@ -117,14 +130,43 @@
 3:29 PM ahahahah\\
 3:29 PM At least the dog and the toothbrush are personal items
 
-3:48 PM The passage experienced a surge in popularity during the 1960...
+3:48 PM The passage experienced a surge in popularity during the 1960...\\
 3:48 PM when Letraset used it on their dry-transfer sheets, and again during the 90s
 
-6:23 PM as desktop publishers bundled the text with their software.
 
-7:27 PM Today it's seen all around the web; on templates, websites, and stock designs.
-7:27 PM Use our generator to get your own, or read on for the authoritative history of lorem ipsum. 
 
 \end{chat}
+
+\vspace{0.5in}
+
+\textbf{Context:}
+
+as desktop publishers bundled the text with their software.
+
+
+
+\textbf{Question 1}: Use our generator to get your own, or read on for the authoritative history of lorem ipsum?
+
+
+
+\textbf{Question 2}: Today it's seen all around the web; on templates, websites, and stock designs.?
+
+%\afterpage{%
+%   \clearpage % flush any accumulated floats
+%
+%	\begin{figure}[ht]
+%		\foreach \name in \namesc {%
+%  		  \begin{subfigure}[]{}
+% 		       \includegraphics[width=0.2\linewidth]{images/\name}
+% 	 	  \end{subfigure}\quad
+%		}
+%	\end{figure}
+%
+%\begin{chat}
+%
+%
+%\end{chat}
+%}
+
 
 \end{document}
