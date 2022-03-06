@@ -13,5 +13,5 @@
 ## In case you need apply transformations to the whole text, try regex.
 ### Some examples here:
 #### Adding new line and spaces: https://regexr.com/6g9lm
-#### Removing special characters
-#### Adding double back slashes to the end of the lines
+#### Adding double back slashes to the end of the lines: https://regexr.com/6g9t9
+#### Removing special characters: https://regexr.com/6g9lv
